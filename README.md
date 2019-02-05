@@ -1,9 +1,10 @@
 # RailsGoat
 
-RailsGoat is a vulnerable version of the Ruby on Rails Framework from versions 3 to 5. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
+RailsGoat は、Ruby on Rails 5 で開発されたウェブアプリケーションの脆弱性のあるバージョンです。OWASP Top 10 の脆弱性、およびプロジェクトメンバーが共有する価値があると感じた「追加の」脆弱性が含まれています。このプロジェクトは、開発者とセキュリティ専門家の両方を教育することを目的としています。
 
 ## Docker Install
-To run Railsgoat with Docker you must first have [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/) installed. Once those dependencies are installed, cd into the Railsgoat directory where you've cloned the code and run. Rails requires Compose **1.6.0** or above and require a Docker Engine of version **1.10.0** or above.
+
+Railsgoat を実行するには、最初に [Docker](https://docs.docker.com/install/) と [Docker Compose](https://docs.docker.com/compose/install/) をインストールしておく必要があります。これらの依存関係がインストールされたら、コードをクローンした Railsgoat ディレクトリに移動して実行します。Rails は Compose **1.6.0** 以上とバージョン **1.10.0** 以上の Docker Engine を必要とします。
 
 ```
 #~/code/railsgoat
@@ -14,11 +15,11 @@ $ docker-compose up
   Creating railsgoat_web_1
   Attaching to railsgoat_web_1
 ```
-Once you see the preceeding message Railsgoat is running on your localhost on port 3000.
+上記のメッセージが表示されたら、Railsgoat はローカルホストのポート 3000 で実行されています。
 
-Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
+お気に入りのブラウザを開き、`http://localhost:3000` に移動してハッキングを始めましょう。
 
-Note: if your container exits with an error, it may be because a server is already running:
+注意: コンテナがエラーで終了する場合は、サーバが既に起動している可能性があります。
 ```
 A server is already running. Check /myapp/tmp/pids/server.pid.
 => Booting Thin
@@ -28,17 +29,17 @@ http://0.0.0.0:3000
 => Ctrl-C to shutdown server
 Exiting
 ```
-In this case, remove that server.pid file and try again. Note also that this file is in your current working directory, not inside the container.
+この場合は、server.pid ファイルを削除してやり直してください。このファイルは現在の作業ディレクトリにあり、コンテナの中にはありません。
 
 ## Capybara Tests
 
-RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. Simply run the following task:
+RailsGoat には、失敗する Capybara RSpec セットが含まれており、それぞれがアプリケーションに個別の脆弱性が存在することを示しています。以下のタスクを実行してください。
 
 ```
 $ docker-compose exec web rails training
 ```
 
-To run just one spec:
+1 個の spec だけを実行するには
 
 ```
 $ docker-compose exec web rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
