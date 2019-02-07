@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+            name: build docker image
+            command: |
+                 docker-compose build
+  test:
+    machine: true
+    steps:
+      - checkout
+      - run:
+            name: setup db
+            command: |
+                 docker-compose run web rails db:setup
+      - run:
+            name: vulnerability test
+            command: |
+                 docker-compose run web rails training
