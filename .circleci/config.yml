@@ -9,6 +9,10 @@ jobs:
           command: |
             apt-get update -qq
             apt-get install -y build-essential libpq-dev nodejs
+
+      - restore_cache:
+          keys:
+            - phantomjs-cache-2.1.1
       - run:
           name: Install PhantomJS
           command: |
@@ -16,15 +20,32 @@ jobs:
             tar jxf phantomjs-2.1.1-linux-x86_64.tar.bz2 phantomjs-2.1.1-linux-x86_64/bin/phantomjs --strip-components 2
             mv phantomjs /usr/local/bin/
             rm phantomjs-2.1.1-linux-x86_64.tar.bz2
+      - save_cache:
+          key: phantomjs-cache-2.1.1
+          paths:
+            - /usr/local/bin/phantomjs
+
       - checkout
+
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+            - gem-cache-v1
       - run:
             name: Install all dependencies in Gemfile
             command: |
                  bundle install
+      - save_cache:
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - /usr/local/bundle
+
       - run:
             name: Setup DB
             command: |
                  rails db:setup
+
       - run:
             name: Test vulnerabilities
             command: |
