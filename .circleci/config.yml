@@ -2,45 +2,30 @@ version: 2
 jobs:
   build:
     docker:
-      - image: golang:1.8.0
+      - image: ruby:2.5.3
     steps:
-      - setup_remote_docker
       - run:
-          name: Install Docker client
+          name: Install dependencies
           command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            mv /tmp/docker/* /usr/bin
+            apt-get update -qq
+            apt-get install -y build-essential libpq-dev nodejs
       - run:
-          name: Install Docker Compose
+          name: Install PhantomJS
           command: |
-            set -x
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            chmod +x /usr/local/bin/docker-compose
+            wget -q https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+            tar jxf phantomjs-2.1.1-linux-x86_64.tar.bz2 phantomjs-2.1.1-linux-x86_64/bin/phantomjs --strip-components 2
+            mv phantomjs /usr/local/bin/
+            rm phantomjs-2.1.1-linux-x86_64.tar.bz2
       - checkout
       - run:
-            name: Build Docker image
+            name: Install all dependencies in Gemfile
             command: |
-                 docker-compose build
-      - run:
-            name: Create Docker container
-            command: |
-                 docker-compose up --no-start
-      - run:
-            name: Copy volume into Docker container
-            command: |
-                 docker cp . $(docker-compose ps -q):/myapp
-      - run:
-            name: Start Docker container
-            command: |
-                 docker-compose start
+                 bundle install
       - run:
             name: Setup DB
             command: |
-                 docker-compose exec web rails db:setup
+                 rails db:setup
       - run:
-            name: Vulnerability test
+            name: Test vulnerabilities
             command: |
-                 docker-compose exec web rails training
+                 rails training
