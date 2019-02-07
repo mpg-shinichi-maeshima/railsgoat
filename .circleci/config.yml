@@ -1,22 +1,31 @@
 version: 2
 jobs:
   build:
-    machine: true
     steps:
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - setup_remote_docker
       - checkout
       - run:
-            name: build docker image
+            name: Build Docker image
             command: |
                  docker-compose build
   test:
-    machine: true
     steps:
       - checkout
       - run:
-            name: setup db
+            name: Copy volume into Docker container
+            command: |
+                 docker cp . $(docker-compose ps -q):/myapp
+      - run:
+            name: Setup DB
             command: |
                  docker-compose run web rails db:setup
       - run:
-            name: vulnerability test
+            name: Vulnerability test
             command: |
                  docker-compose run web rails training
