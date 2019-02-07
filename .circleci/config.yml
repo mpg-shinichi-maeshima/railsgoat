@@ -1,6 +1,8 @@
 version: 2
 jobs:
-  build:
+  test:
+    docker:
+      - image: railsgoat
     steps:
       - run:
           name: Install Docker Compose
@@ -14,18 +16,23 @@ jobs:
             name: Build Docker image
             command: |
                  docker-compose build
-  test:
-    steps:
-      - checkout
+      - run:
+            name: Create Docker container
+            command: |
+                 docker-compose up --no-start
       - run:
             name: Copy volume into Docker container
             command: |
                  docker cp . $(docker-compose ps -q):/myapp
       - run:
+            name: Start Docker container
+            command: |
+                 docker-compose start
+      - run:
             name: Setup DB
             command: |
-                 docker-compose run web rails db:setup
+                 docker-compose exec web rails db:setup
       - run:
             name: Vulnerability test
             command: |
-                 docker-compose run web rails training
+                 docker-compose exec web rails training
