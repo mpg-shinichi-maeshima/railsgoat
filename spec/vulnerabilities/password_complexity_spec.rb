@@ -9,7 +9,7 @@ feature "password complexity" do
     pending unless verifying_fixed?
   end
 
-  scenario "one\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Lack-of-Password-Complexity" do
+  scenario "one\nTutorial: https://github.medpeer.co.jp/akira-sannoh/railsgoat/wiki/A2-Lack-of-Password-Complexity" do
     new_user_email = normal_user.email + "two"
 
     visit "/signup"

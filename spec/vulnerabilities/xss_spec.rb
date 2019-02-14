@@ -10,7 +10,7 @@ feature "xss" do
     pending unless verifying_fixed?
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A3-Cross-Site-Scripting", js: true do
+  scenario "attack\nTutorial: https://github.medpeer.co.jp/akira-sannoh/railsgoat/wiki/A3-Cross-Site-Scripting", js: true do
     login(normal_user)
 
     visit "/users/#{normal_user.id}/account_settings"

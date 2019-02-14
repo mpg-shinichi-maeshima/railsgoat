@@ -10,7 +10,7 @@ feature "url access" do
     pending unless verifying_fixed?
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A7-Missing-Function-Level-Access-Control--(Admin-Controller)", js: true do
+  scenario "attack\nTutorial: https://github.medpeer.co.jp/akira-sannoh/railsgoat/wiki/A7-Missing-Function-Level-Access-Control--(Admin-Controller)", js: true do
     login(normal_user)
 
     visit "/admin/1/dashboard"

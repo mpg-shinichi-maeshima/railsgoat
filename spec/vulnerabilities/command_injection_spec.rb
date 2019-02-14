@@ -10,7 +10,7 @@ feature "command injection" do
     pending unless verifying_fixed?
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A1-Command-Injection", js: true do
+  scenario "attack\nTutorial: https://github.medpeer.co.jp/akira-sannoh/railsgoat/wiki/R5-A1-Command-Injection", js: true do
     login(normal_user)
 
     legit_file = File.join(Rails.root, "public", "data", "legit.txt")

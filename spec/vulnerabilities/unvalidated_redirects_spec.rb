@@ -10,7 +10,7 @@ feature "unvalidated redirect" do
     pending unless verifying_fixed?
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A10-Unvalidated-Redirects-and-Forwards-(redirect_to)", js: true do
+  scenario "attack\nTutorial: https://github.medpeer.co.jp/akira-sannoh/railsgoat/wiki/R5-A10-Unvalidated-Redirects-and-Forwards-(redirect_to)", js: true do
     visit "/?url=http://example.com/do/evil/things"
     within(".signup") do
       fill_in "email", with: normal_user.email

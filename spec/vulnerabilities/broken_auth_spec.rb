@@ -10,7 +10,7 @@ feature "broken_auth" do
     pending unless verifying_fixed?
   end
 
-  scenario "one\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Credential-Enumeration" do
+  scenario "one\nTutorial: https://github.medpeer.co.jp/akira-sannoh/railsgoat/wiki/R5-A2-Credential-Enumeration" do
     wrong_email = normal_user.email + "not"
 
     visit "/"
@@ -25,7 +25,7 @@ feature "broken_auth" do
     expect(find("div#flash_notice").text).not_to include(wrong_email)
   end
 
-  scenario "two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Credential-Enumeration" do
+  scenario "two\nTutorial: https://github.medpeer.co.jp/akira-sannoh/railsgoat/wiki/R5-A2-Credential-Enumeration" do
     visit "/"
     within(".signup") do
       fill_in "email", with: normal_user.email
