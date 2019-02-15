@@ -276,7 +276,9 @@ messages = [
 ]
 
 user_map = users.each_with_object({}) do |user_info, h|
-  h[user_info[:email]] = User.create!(user_info).id
+  user = User.new(user_info)
+  user.save!(validate: false)
+  h[user_info[:email]] = user.id
 end
 
 retirements.each do |r|

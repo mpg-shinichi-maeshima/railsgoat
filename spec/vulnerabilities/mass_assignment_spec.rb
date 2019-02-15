@@ -28,8 +28,8 @@ feature "mass assignment" do
                         email: "hackety@h4x0rs.c0m",
                         first_name: "hackety",
                         last_name: "hax",
-                        password: "foobarewe",
-                        password_confirmation: "foobarewe" }}
+                        password: "Foobarewe100%",
+                        password_confirmation: "Foobarewe100%" }}
 
     page.driver.post "/users", params
 
