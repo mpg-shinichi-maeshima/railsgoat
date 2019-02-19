@@ -20,6 +20,6 @@ feature "unvalidated redirect" do
       click_on "Login"
     end
 
-    expect(current_url).to eq("/dashboard/home")
+    expect(current_url).to eq("http://#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}/dashboard/home")
   end
 end
