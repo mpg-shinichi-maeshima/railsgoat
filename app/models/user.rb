@@ -28,7 +28,7 @@ class User < ApplicationRecord
     build_paid_time_off(POPULATE_PAID_TIME_OFF.sample).schedule.build(POPULATE_SCHEDULE.sample)
     build_work_info(POPULATE_WORK_INFO.sample)
     # Uncomment below line to use encrypted SSN(s)
-    #work_info.build_key_management(:iv => SecureRandom.hex(32))
+    #work_info.build_key_management(iv: SecureRandom.random_bytes(16))
     performance.build(POPULATE_PERFORMANCE.sample)
   end
 
