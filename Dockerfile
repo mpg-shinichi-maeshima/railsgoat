@@ -1,9 +1,10 @@
 FROM ruby:2.5.3
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
-RUN wget -q https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-  && tar jxf phantomjs-2.1.1-linux-x86_64.tar.bz2 phantomjs-2.1.1-linux-x86_64/bin/phantomjs --strip-components 2 \
-  && mv phantomjs /usr/local/bin/ \
-  && rm phantomjs-2.1.1-linux-x86_64.tar.bz2
+RUN echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google-chrome.list \
+ && curl -s https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+ && apt-get update -qq \
+ && apt-get install -y --no-install-recommends build-essential libpq-dev nodejs google-chrome-stable chromedriver \
+ && apt-get clean \
+ && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 RUN mkdir /myapp
 WORKDIR /myapp
 ADD Gemfile /myapp/Gemfile

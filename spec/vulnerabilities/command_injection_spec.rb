@@ -22,7 +22,7 @@ feature "command injection" do
       File.open(hackety_file, "w") { |f| f.print "mwahaha" }
       within(".new_benefits") do
         attach_file "benefits_upload", hackety_file
-        find(:xpath, "//input[@id='benefits_backup']", visible: false).set "true"
+        execute_script("document.getElementById('benefits_backup').value = 'true'")
       end
       click_on "Start Upload"
     end

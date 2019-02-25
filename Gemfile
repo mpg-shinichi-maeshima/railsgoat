@@ -53,8 +53,8 @@ group :development, :test, :mysql do
   gem "capybara"
   gem "database_cleaner"
   gem "launchy"
-  gem "poltergeist"
   gem "rspec-rails"
+  gem "selenium-webdriver"
   gem "test-unit"
 end
 

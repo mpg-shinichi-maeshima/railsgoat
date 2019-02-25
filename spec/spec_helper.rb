@@ -9,7 +9,7 @@ SimpleCov.start if ENV["COVERAGE"]
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/rails"
-require "capybara/poltergeist"
+require "selenium-webdriver"
 require "database_cleaner"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -61,7 +61,10 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-Capybara.javascript_driver = :poltergeist
+Capybara.register_driver :selenium_chrome_headless do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_options: { args: %w(headless disable-infobars disable-extensions disable-gpu disable-dev-shm-usage no-sandbox window-size=1024,1024) }))
+end
+Capybara.javascript_driver = :selenium_chrome_headless
 Capybara.raise_server_errors = false
 
 DatabaseCleaner.strategy = :truncation

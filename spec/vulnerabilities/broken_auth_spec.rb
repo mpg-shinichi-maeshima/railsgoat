@@ -6,7 +6,7 @@ feature "broken_auth" do
 
   before do
     UserFixture.reset_all_users
-
+    page.driver.browser.clear_cookies
     pending unless verifying_fixed?
   end
 
