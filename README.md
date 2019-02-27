@@ -36,13 +36,13 @@ Exiting
 RailsGoat には、失敗する Capybara RSpec セットが含まれており、それぞれがアプリケーションに個別の脆弱性が存在することを示しています。以下のタスクを実行してください。
 
 ```
-$ docker-compose run web rails training
+$ docker-compose run --rm web rails training
 ```
 
 1 個の spec だけを実行するには
 
 ```
-$ docker-compose run web rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
+$ docker-compose run --rm web rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
 ```
 
 # License
