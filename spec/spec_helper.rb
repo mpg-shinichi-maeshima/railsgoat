@@ -62,7 +62,7 @@ RSpec.configure do |config|
 end
 
 Capybara.register_driver :selenium_chrome_headless do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_options: { args: %w(headless disable-infobars disable-extensions disable-gpu disable-dev-shm-usage no-sandbox disable-setuid-sandbox window-size=1024,1024) }))
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_options: { args: %w(headless disable-infobars disable-extensions disable-gpu no-sandbox disable-setuid-sandbox window-size=1024,1024) }))
 end
 Capybara.javascript_driver = :selenium_chrome_headless
 Capybara.raise_server_errors = false
