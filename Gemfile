@@ -54,6 +54,7 @@ group :development, :test, :mysql do
   gem "rspec-rails", '4.0.0.beta3' # 4/26/2019: LOCKED DOWN
   gem "selenium-webdriver"
   gem "test-unit"
+  gem "webdrivers", '~> 4.0'
 end
 
 group :mysql do
