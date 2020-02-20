@@ -2,9 +2,9 @@
 source "https://rubygems.org"
 
 #don't upgrade
-gem "rails", "5.1.6.2"
+gem "rails", "6.0.0"
 
-ruby "2.5.5"
+ruby "2.6.5"
 
 gem "aruba"
 gem "bcrypt"
@@ -21,7 +21,7 @@ gem "rails-perftest"
 gem "rake"
 gem "responders" #For Rails 4.2 # LOCKED DOWN
 gem "ruby-prof"
-gem "sass-rails"
+gem "sassc-rails"
 gem "simplecov", require: false, group: :test
 gem "sqlite3"
 gem "therubyracer"
@@ -36,9 +36,7 @@ gem "unicorn"
 group :development, :mysql do
   gem "better_errors"
   gem "binding_of_caller"
-  gem "brakeman"
   gem "bundler-audit"
-  gem "guard-brakeman"
   gem "guard-livereload"
   gem "guard-rspec"
   gem "guard-shell"
@@ -53,7 +51,7 @@ group :development, :test, :mysql do
   gem "capybara"
   gem "database_cleaner"
   gem "launchy"
-  gem "rspec-rails"
+  gem "rspec-rails", '4.0.0.beta3' # 4/26/2019: LOCKED DOWN
   gem "selenium-webdriver"
   gem "test-unit"
 end

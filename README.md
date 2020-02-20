@@ -1,6 +1,6 @@
 # RailsGoat
 
-RailsGoat は、Ruby on Rails 5 で開発されたウェブアプリケーションの脆弱性のあるバージョンです。OWASP Top 10 の脆弱性、およびプロジェクトメンバーが共有する価値があると感じた「追加の」脆弱性が含まれています。このプロジェクトは、開発者とセキュリティ専門家の両方を教育することを目的としています。
+RailsGoat は、Ruby on Rails 6 で開発されたウェブアプリケーションの脆弱性のあるバージョンです。OWASP Top 10 の脆弱性、およびプロジェクトメンバーが共有する価値があると感じた「追加の」脆弱性が含まれています。このプロジェクトは、開発者とセキュリティ専門家の両方を教育することを目的としています。
 
 ## Docker Install
 
@@ -23,7 +23,7 @@ $ docker-compose up
 ```
 A server is already running. Check /myapp/tmp/pids/server.pid.
 => Booting Thin
-=> Rails 5.0.1 application starting in development on
+=> Rails 6.0.0 application starting in development on
 http://0.0.0.0:3000
 => Run `rails server -h` for more startup options
 => Ctrl-C to shutdown server
